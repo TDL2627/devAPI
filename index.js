@@ -15,6 +15,7 @@ db.once("open", () => console.log("Connected to database"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(cors());
+
 app.use("/developers", developerRouter);
 
 app.set("port", process.env.port || 2627);
