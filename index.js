@@ -24,7 +24,7 @@ app.get("/", function(req, res){
     res.send("WELCOME TO TDL2627 API");
   });
 
-const port = process.env.PORT || 2627;
+const port = process.env.PORT || 3000;
   app.listen(port, () => {
     console.log(`listening on port ${port}`);
   });
