@@ -1,10 +1,17 @@
 const express = require('express');
+require("dotenv").config();
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const mongoose = require("mongoose")
 const app = express();
 const developerRouter = require("./routes/developers");
 
-app.use(bodyParser.json());
+// mongo db connection
+mongoose.connect(process.env.DB_URL, { useNewUrlParser: true });
+const db = mongoose.connection;
+db.on("error", (error) => console.log(error));
+db.once("open", () => console.log("Connected to database"));
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(cors());
