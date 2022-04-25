@@ -6,7 +6,6 @@ const Developer = require ('../models/developer')
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const getDeveloper = require("../middleware/finders");
-const developer = require("../models/developer");
 const router = express.Router();
 
 // get
@@ -24,7 +23,17 @@ router.get("/:id", getDeveloper, (req, res, next) => {
   res.send(res.developer);
 });
 
+  // GET ONE developer 2.0
+  router.get("/1/", auth, async (req, res, next) => {
+    try {
+      const developer = await Developer.findBy(req.developer._id)
+    res.status(201).json(developer)
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  });
 
+  
 //  added
  router.post("/", async (req, res, next) => {
   const { fullname, email, number,password, portfolio, github, avatar, role } = req.body;
