@@ -14,9 +14,8 @@ const developerSchema = new mongoose.Schema({
       type: String,
       required: true,
     },
-    number: {
-      type: String,
-      required: true,
+    linkedin: {
+      type: String
     },
     portfolio: {
         type: String,
@@ -29,7 +28,7 @@ const developerSchema = new mongoose.Schema({
         type: String,
         required: true,
       },
-      role: {
+    type: {
         type: String,
         required: true,
       },

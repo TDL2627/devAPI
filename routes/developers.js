@@ -36,15 +36,15 @@ router.get("/:id", getDeveloper, (req, res, next) => {
   
 //  added
  router.post("/", async (req, res, next) => {
-  const { fullname, email, number,password, portfolio, github, avatar, role } = req.body;
+  const { fullname, email, linkedin,password, portfolio, github, avatar, type } = req.body;
   const salt = await bcrypt.genSalt();
   const hashedPassword = await bcrypt.hash(password, salt);
   const developer = new Developer({
     fullname,
     email,
-    number,
+    linkedin,
     portfolio,
-    role,
+    type,
     github,
     avatar,
     password: hashedPassword
@@ -68,14 +68,14 @@ router.get("/:id", getDeveloper, (req, res, next) => {
 
 // update
 router.put("/:id", getDeveloper, async (req, res, next) => {
-  const { fullname, email, role, number,password, portfolio, github, avatar } = req.body;
+  const { fullname, email, type, linkedin,password, portfolio, github, avatar } = req.body;
   if (fullname) res.developer.fullname = fullname;
   if (email) res.developer.email = email;
   if (github) res.developer.github = github;
-  if (number) res.developer.number =number;
+  if (linkedin) res.developer.linkedin =linkedin;
   if (portfolio) res.developer.portfolio = portfolio;
   if (avatar) res.developer.avatar = avatar;
-  if (role) res.developer.role = role;
+  if (type) res.developer.type = type;
   if (password) {
     const salt = await bcrypt.genSalt();
     const hashedPassword = await bcrypt.hash(password, salt);
